@@ -1,0 +1,41 @@
+{
+  "name": "blender-tutor-electron",
+  "version": "1.0.0",
+  "private": true,
+  "main": "electron/main.js",
+  "description": "Blender Tutor - Electron + React (Italiano)",
+  "scripts": {
+    "start": "concurrently \"npm:react-start\" \"wait-on http://localhost:3000 && electron .\"",
+    "react-start": "react-scripts start",
+    "build-react": "react-scripts build",
+    "postinstall": "electron-builder install-app-deps",
+    "dist": "npm run build-react && electron-builder --win --x64",
+    "pack": "npm run build-react && electron-builder --dir --win --x64"
+  },
+  "build": {
+    "appId": "com.example.blendertutor",
+    "productName": "Blender Tutor",
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.ico"
+    },
+    "files": [
+      "build/**/*",
+      "electron/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ]
+  },
+  "dependencies": {
+    "electron-store": "^8.1.0"
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "electron": "^26.3.0",
+    "electron-builder": "^24.6.0",
+    "wait-on": "^7.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1"
+  }
+}
